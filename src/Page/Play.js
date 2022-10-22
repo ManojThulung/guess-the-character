@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "../assets/images/naruto.jpg";
+import InputForm from "../Component/InputForm";
 
 function Play() {
   return (
@@ -10,6 +12,14 @@ function Play() {
         <div className="score">
           Score: <span className="score-num">00</span>
         </div>
+      </div>
+      <div className="image-sec">
+        {/* <div className="image-cover"> */}
+        <img src={Image} alt="Character" />
+        {/* </div> */}
+      </div>
+      <div className="input-form">
+        <InputForm />
       </div>
     </div>
   );
