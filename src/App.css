@@ -125,3 +125,32 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.play-page .input-form button.delete-icon {
+  font-size: 2rem;
+  margin: 2px;
+  padding: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.play-page .homepage-btn-container {
+  text-align: center;
+  margin-top: 35px;
+}
+
+.play-page .homepage-btn-container button {
+  font-size: 1.5rem;
+  padding: 5px 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--color-btn-bg-pm);
+  border: none;
+  color: white;
+  transition: all 0.3s;
+}
+
+.play-page .homepage-btn-container button:hover {
+  background-color: var(--color-btn-bg-pm-hover);
+}

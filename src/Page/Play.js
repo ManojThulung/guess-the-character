@@ -2,6 +2,9 @@ import React from "react";
 import Image from "../assets/images/naruto.jpg";
 import InputForm from "../Component/InputForm";
 
+import { FiDelete } from "react-icons/fi";
+import { Link } from "react-router-dom";
+
 function Play() {
   return (
     <div className="play-page">
@@ -19,7 +22,12 @@ function Play() {
         {/* </div> */}
       </div>
       <div className="input-form">
-        <InputForm />
+        <InputForm deleteIcon={<FiDelete />} />
+      </div>
+      <div className="homepage-btn-container">
+        <Link to="/">
+          <button>Home Page</button>
+        </Link>
       </div>
     </div>
   );
