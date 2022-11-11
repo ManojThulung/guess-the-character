@@ -126,7 +126,7 @@
   cursor: pointer;
 }
 
-.play-page .input-form button.delete-icon {
+.play-page .input-form .btn-container .delete-icon {
   font-size: 2rem;
   margin: 2px;
   padding: 0px;

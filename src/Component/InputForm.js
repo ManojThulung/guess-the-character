@@ -2,49 +2,50 @@ import React from "react";
 import { useRef } from "react";
 
 function InputForm(props) {
-  const inputRef = useRef();
   const inputContainerRef = useRef();
+  let counter = 0;
 
   const onClickHandler = (e) => {
-    const value = e.target.value;
+    //to prevent from getting undifined value from outside of buttons
+    if (e.target.value) {
+      const value = e.target.value; //get a letter value from clicked button.
 
-    // console.log(inputContainerRef.current.firstChild);
-    inputContainerRef.current.map((value) => console.log(value));
-    // console.log(inputRef.current);
-    inputRef.current.value = value;
+      //to get the total numbers of letter of the name.
+      const inputList = inputContainerRef.current.children;
+      const inputListLength = inputList.length;
+
+      if (counter < inputListLength) {
+        inputList[counter].value = value; //set letter value in the empty input.
+        counter = counter + 1;
+      } else {
+        console.log("end");
+      }
+    }
   };
 
   return (
     <>
       <div className="input-container" ref={inputContainerRef}>
-        <input type="text" disabled ref={inputRef} />
+        <input type="text" disabled />
         <input type="text" disabled />
         <input type="text" disabled />
         <input type="text" disabled />
         <input type="text" disabled />
         <input type="text" disabled />
       </div>
-      <div className="btn-container">
-        <div>
-          <button onClick={onClickHandler} value="N">
-            N
-          </button>
-          <button onClick={onClickHandler} value="K">
-            K
-          </button>
-          <button>T</button>
-          <button>N</button>
-          <button>R</button>
-          <button>U</button>
-        </div>
-        <div>
-          <button>S</button>
-          <button>O</button>
-          <button>A</button>
-          <button>J</button>
-          <button>N</button>
-          <button className="delete-icon">{props.deleteIcon}</button>
-        </div>
+      <div onClick={onClickHandler} className="btn-container">
+        <button value="N">N</button>
+        <button value="K">K</button>
+        <button value="T">T</button>
+        <button value="N">N</button>
+        <button value="R">R</button>
+        <button value="U">U</button>
+        <button value="S">S</button>
+        <button value="O">O</button>
+        <button value="A">A</button>
+        <button value="J">J</button>
+        <button value="N">N</button>
+        <span className="delete-icon">{props.deleteIcon}</span>
       </div>
     </>
   );
