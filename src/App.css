@@ -126,13 +126,13 @@
   cursor: pointer;
 }
 
-.play-page .input-form .btn-container .delete-icon {
+.play-page .input-form .delete-btn-container {
   font-size: 2rem;
   margin: 2px;
   padding: 0px;
-  border-radius: 5px;
   cursor: pointer;
   border: none;
+  text-align: center;
 }
 
 .play-page .homepage-btn-container {
@@ -149,6 +149,7 @@
   border: none;
   color: white;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .play-page .homepage-btn-container button:hover {

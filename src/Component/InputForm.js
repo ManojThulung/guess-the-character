@@ -6,21 +6,28 @@ function InputForm(props) {
   let counter = 0;
 
   const onClickHandler = (e) => {
+    console.log(e.target.value);
     //to prevent from getting undifined value from outside of buttons
     if (e.target.value) {
       const value = e.target.value; //get a letter value from clicked button.
 
-      //to get the total numbers of letter of the name.
+      //to get the total numbers of inputs.
       const inputList = inputContainerRef.current.children;
       const inputListLength = inputList.length;
 
       if (counter < inputListLength) {
         inputList[counter].value = value; //set letter value in the empty input.
-        counter = counter + 1;
+        counter += 1;
       } else {
         console.log("end");
       }
     }
+  };
+
+  const onDeleteHandler = () => {
+    const inputList = inputContainerRef.current.children;
+    inputList[counter - 1].value = ""; //empty the least filled textfield.
+    counter -= 1;
   };
 
   return (
@@ -45,7 +52,11 @@ function InputForm(props) {
         <button value="A">A</button>
         <button value="J">J</button>
         <button value="N">N</button>
-        <span className="delete-icon">{props.deleteIcon}</span>
+      </div>
+      <div className="delete-btn-container">
+        <span onClick={onDeleteHandler} className="delete-icon">
+          {props.deleteIcon}
+        </span>
       </div>
     </>
   );
