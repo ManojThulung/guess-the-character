@@ -4,11 +4,12 @@ import { useRef } from "react";
 function InputForm(props) {
   const inputContainerRef = useRef();
   let counter = 0;
+  let userInput = "";
 
   const onClickHandler = (e) => {
-    console.log(e.target.value);
     //to prevent from getting undifined value from outside of buttons
     if (e.target.value) {
+      let correctName = "naruto";
       const value = e.target.value; //get a letter value from clicked button.
 
       //to get the total numbers of inputs.
@@ -17,7 +18,17 @@ function InputForm(props) {
 
       if (counter < inputListLength) {
         inputList[counter].value = value; //set letter value in the empty input.
+        userInput += value;
         counter += 1;
+
+        if (counter === inputListLength) {
+          if (userInput === correctName.toUpperCase()) {
+            console.log("correct");
+            alert("correct answer");
+          } else {
+            console.log("Wrong");
+          }
+        }
       } else {
         console.log("end");
       }
@@ -25,9 +36,13 @@ function InputForm(props) {
   };
 
   const onDeleteHandler = () => {
-    const inputList = inputContainerRef.current.children;
-    inputList[counter - 1].value = ""; //empty the least filled textfield.
-    counter -= 1;
+    if (counter >= 1) {
+      const inputList = inputContainerRef.current.children;
+      inputList[counter - 1].value = ""; //empty the least filled textfield.
+      userInput = userInput.slice(0, -1);
+      console.log(userInput);
+      counter -= 1;
+    }
   };
 
   return (

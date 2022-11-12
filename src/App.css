@@ -78,10 +78,14 @@
 }
 
 .play-page .image-sec {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  border: 3px solid black;
   margin-top: 20px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: transparent;
 }
 
 /* .play-page .image-cover {
@@ -89,11 +93,12 @@
 } */
 
 .play-page .image-sec img {
-  border: 2px solid black;
-  border-radius: 5px;
   width: 400px;
   height: 400px;
+  transform: scale(15);
   overflow: hidden;
+  /* filter: blur(50px);
+  -webkit-filter: blur(28px); */
 }
 
 .play-page .input-form .input-container {
