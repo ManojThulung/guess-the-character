@@ -6,9 +6,10 @@
 
   --color-btn-pm: #fbfaf9;
   --color-btn-bg-pm: #d63d3d;
-  --color-btn-bg-pm-hover: #aa2626;
+  --color-btn-bg-se: #3f51b5;
   --color-btn-pm-hover: #e4641f;
-  --color-btn-se-hover: #022861;
+  --color-btn-bg-pm-hover: #aa2626;
+  --color-btn-bg-se-hover: #0b3b83;
 
   --fontsize-text: 1.2rem;
   --fontsize-subheader: 1.3rem;
@@ -95,8 +96,8 @@
 .play-page .image-sec img {
   width: 400px;
   height: 400px;
-  transform: scale(15);
   overflow: hidden;
+  transition: all 0.3s ease-out;
   /* filter: blur(50px);
   -webkit-filter: blur(28px); */
 }
@@ -142,7 +143,8 @@
 
 .play-page .homepage-btn-container {
   text-align: center;
-  margin-top: 35px;
+  max-width: 240px;
+  margin: auto;
 }
 
 .play-page .homepage-btn-container button {
@@ -150,13 +152,29 @@
   padding: 5px 50px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: var(--color-btn-bg-pm);
-  border: none;
   color: white;
   transition: all 0.3s;
   cursor: pointer;
+  width: 100%;
+  margin: 10px 0px;
+  border: 2px solid black;
 }
 
-.play-page .homepage-btn-container button:hover {
-  background-color: var(--color-btn-bg-pm-hover);
+.play-page .homepage-btn-container .btn-home-page {
+  background-color: var(--color-btn-bg-pm);
+  background-color: transparent;
+  color: black;
+}
+
+.play-page .homepage-btn-container .btn-next-level {
+  background-color: var(--color-btn-bg-se);
+}
+
+.play-page .homepage-btn-container .btn-home-page:hover {
+  /* background-color: var(--color-btn-bg-pm-hover); */
+  background-color: rgb(196, 195, 195);
+}
+
+.play-page .homepage-btn-container .btn-next-level:hover {
+  background-color: var(--color-btn-bg-se-hover);
 }

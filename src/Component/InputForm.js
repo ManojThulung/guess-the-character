@@ -23,8 +23,7 @@ function InputForm(props) {
 
         if (counter === inputListLength) {
           if (userInput === correctName.toUpperCase()) {
-            console.log("correct");
-            alert("correct answer");
+            props.getLevelStatus(true); //function called from parent component
           } else {
             console.log("Wrong");
           }

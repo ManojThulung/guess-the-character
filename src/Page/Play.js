@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "../assets/images/naruto.jpg";
 import InputForm from "../Component/InputForm";
 
@@ -6,6 +6,12 @@ import { FiDelete } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 function Play() {
+  const [levelComplete, setLevelComplete] = useState(false);
+
+  const getLevelStatus = (isLevel) => {
+    setLevelComplete(isLevel);
+  };
+
   return (
     <div className="play-page">
       <div className="header">
@@ -18,15 +24,24 @@ function Play() {
       </div>
       <div className="image-sec">
         {/* <div className="image-cover"> */}
-        <img src={Image} alt="Character" />
+        <img
+          src={Image}
+          alt="Character"
+          style={{ transform: levelComplete ? "scale(1)" : "scale(15)" }}
+        />
         {/* </div> */}
       </div>
       <div className="input-form">
-        <InputForm deleteIcon={<FiDelete />} />
+        <InputForm getLevelStatus={getLevelStatus} deleteIcon={<FiDelete />} />
       </div>
       <div className="homepage-btn-container">
+        <div>
+          {levelComplete && (
+            <button className="btn-next-level">Next Level</button>
+          )}
+        </div>
         <Link to="/">
-          <button>Home Page</button>
+          <button className="btn-home-page">Home Page</button>
         </Link>
       </div>
     </div>
