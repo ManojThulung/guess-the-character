@@ -1,18 +1,34 @@
-import React, { useRef, useState } from "react";
-import Image from "../assets/images/naruto.jpg";
-import InputForm from "../Component/InputForm";
-
+import React, { useEffect, useRef, useState } from "react";
 import { FiDelete } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import InputForm from "../Component/InputForm";
+
+import Naruto from "../assets/images/naruto.jpg";
+import Goku from "../assets/images/goku.jpg";
+
+const LEVELS = [
+  {
+    name: "naruto",
+    buttons: "ANLSROYUBTLP",
+    image: Naruto,
+  },
+  {
+    name: "goku",
+    buttons: "VGAOLSUK",
+    image: Goku,
+  },
+];
 
 function Play() {
   const [levelComplete, setLevelComplete] = useState(false);
+  const [levelState, setLevelState] = useState(0);
   const imageCoverRef = useRef();
   const imageRef = useRef();
 
-  const getLevelStatus = (isLevel) => {
-    setLevelComplete(isLevel);
-  };
+  useEffect(() => {
+    setLevelComplete((prevLevelComplete) => (prevLevelComplete = false));
+    // function to move next level
+  }, [levelState]);
 
   // function to flash red color when a guess is wrong.
   const shakeImage = () => {
@@ -27,6 +43,16 @@ function Play() {
     });
   };
 
+  // function to move next level
+  const nextLevelHandler = () => {
+    setLevelState((prevLevelState) => prevLevelState + 1);
+  };
+
+  //to zoom out image
+  const getLevelStatus = (isLevel) => {
+    setLevelComplete((prevLevelComplete) => (prevLevelComplete = isLevel));
+  };
+
   return (
     <div className="play-page">
       <div className="header">
@@ -38,26 +64,28 @@ function Play() {
         </div>
       </div>
       <div className="image-sec" ref={imageCoverRef}>
-        {/* <div className="image-cover"> */}
         <img
-          src={Image}
+          src={LEVELS[levelState].image}
           ref={imageRef}
           alt="Character"
           style={{ transform: levelComplete ? "scale(1)" : "scale(15)" }}
         />
-        {/* </div> */}
       </div>
       <div className="input-form">
         <InputForm
           shakeImage={shakeImage}
           getLevelStatus={getLevelStatus}
           deleteIcon={<FiDelete />}
+          levels={LEVELS}
+          levelState={levelState}
         />
       </div>
       <div className="homepage-btn-container">
         <div>
           {levelComplete && (
-            <button className="btn-next-level">Next Level</button>
+            <button className="btn-next-level" onClick={nextLevelHandler}>
+              Next Level
+            </button>
           )}
         </div>
         <Link to="/">

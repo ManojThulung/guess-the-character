@@ -1,7 +1,13 @@
 import React from "react";
 import { useRef } from "react";
 
-function InputForm(props) {
+function InputForm({
+  getLevelStatus,
+  shakeImage,
+  deleteIcon,
+  levels,
+  levelState,
+}) {
   const inputContainerRef = useRef();
   let counter = 0;
   let userInput = "";
@@ -9,7 +15,7 @@ function InputForm(props) {
   const onClickHandler = (e) => {
     //to prevent from getting undifined value from outside of buttons
     if (e.target.value) {
-      let correctName = "naruto";
+      let correctName = levels[levelState].name;
       const value = e.target.value; //get a letter value from clicked button.
 
       //to get the total numbers of inputs.
@@ -23,10 +29,9 @@ function InputForm(props) {
 
         if (counter === inputListLength) {
           if (userInput === correctName.toUpperCase()) {
-            props.getLevelStatus(true); //function called from parent component
+            getLevelStatus(true); //function called from parent component
           } else {
-            console.log("Wrong");
-            props.shakeImage();
+            shakeImage();
           }
         }
       } else {
@@ -47,29 +52,18 @@ function InputForm(props) {
   return (
     <>
       <div className="input-container" ref={inputContainerRef}>
-        <input type="text" disabled />
-        <input type="text" disabled />
-        <input type="text" disabled />
-        <input type="text" disabled />
-        <input type="text" disabled />
-        <input type="text" disabled />
+        {[...levels[levelState].name].map((input) => (
+          <input type="text" disabled value="" />
+        ))}
       </div>
       <div onClick={onClickHandler} className="btn-container">
-        <button value="N">N</button>
-        <button value="K">K</button>
-        <button value="T">T</button>
-        <button value="N">N</button>
-        <button value="R">R</button>
-        <button value="U">U</button>
-        <button value="S">S</button>
-        <button value="O">O</button>
-        <button value="A">A</button>
-        <button value="J">J</button>
-        <button value="N">N</button>
+        {[...levels[levelState].buttons].map((btn) => (
+          <button value={btn}>{btn}</button>
+        ))}
       </div>
       <div className="delete-btn-container">
         <span onClick={onDeleteHandler} className="delete-icon">
-          {props.deleteIcon}
+          {deleteIcon}
         </span>
       </div>
     </>
