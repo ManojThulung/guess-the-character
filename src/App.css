@@ -86,7 +86,8 @@
   margin-top: 20px;
   overflow: hidden;
   border-radius: 5px;
-  background: transparent;
+  background-color: red;
+  transition: 0.2s ease-in;
 }
 
 /* .play-page .image-cover {
@@ -97,7 +98,7 @@
   width: 400px;
   height: 400px;
   overflow: hidden;
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
   /* filter: blur(50px);
   -webkit-filter: blur(28px); */
 }

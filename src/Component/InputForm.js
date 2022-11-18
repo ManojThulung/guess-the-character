@@ -26,6 +26,7 @@ function InputForm(props) {
             props.getLevelStatus(true); //function called from parent component
           } else {
             console.log("Wrong");
+            props.shakeImage();
           }
         }
       } else {
@@ -39,7 +40,6 @@ function InputForm(props) {
       const inputList = inputContainerRef.current.children;
       inputList[counter - 1].value = ""; //empty the least filled textfield.
       userInput = userInput.slice(0, -1);
-      console.log(userInput);
       counter -= 1;
     }
   };
