@@ -5,6 +5,7 @@ import InputForm from "../Component/InputForm";
 
 import Naruto from "../assets/images/naruto.jpg";
 import Goku from "../assets/images/goku.jpg";
+import Nezuko from "../assets/images/nezuko.jpg";
 
 const LEVELS = [
   {
@@ -16,6 +17,11 @@ const LEVELS = [
     name: "goku",
     buttons: "VGAOLSUK",
     image: Goku,
+  },
+  {
+    name: "nezuko",
+    buttons: "PNTEEZAUOKER",
+    image: Nezuko,
   },
 ];
 
@@ -68,17 +74,22 @@ function Play() {
           src={LEVELS[levelState].image}
           ref={imageRef}
           alt="Character"
-          style={{ transform: levelComplete ? "scale(1)" : "scale(15)" }}
+          style={{ transform: levelComplete ? "scale(1)" : "scale(10)" }}
         />
       </div>
+      {levelComplete && (
+        <div className="char-name">{LEVELS[levelState].name}</div>
+      )}
       <div className="input-form">
-        <InputForm
-          shakeImage={shakeImage}
-          getLevelStatus={getLevelStatus}
-          deleteIcon={<FiDelete />}
-          levels={LEVELS}
-          levelState={levelState}
-        />
+        {!levelComplete && (
+          <InputForm
+            shakeImage={shakeImage}
+            getLevelStatus={getLevelStatus}
+            deleteIcon={<FiDelete />}
+            levels={LEVELS}
+            levelState={levelState}
+          />
+        )}
       </div>
       <div className="homepage-btn-container">
         <div>

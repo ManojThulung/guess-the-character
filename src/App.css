@@ -43,12 +43,14 @@
 .home-page .hero-sec {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 0%;
+  width: 100%;
+  transform: translate(0%, -50%);
 }
 
 .hero-sec .title {
   font-size: 2rem;
+  text-align: center;
 }
 
 .home-page .btn-sec {
@@ -74,6 +76,7 @@
 .play-page .header {
   font-size: 1.4rem;
   margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
 }
@@ -90,10 +93,6 @@
   transition: 0.2s ease-in;
 }
 
-/* .play-page .image-cover {
-  width: 100%;
-} */
-
 .play-page .image-sec img {
   width: 400px;
   height: 400px;
@@ -101,6 +100,15 @@
   transition: all 0.2s ease-out;
   /* filter: blur(50px);
   -webkit-filter: blur(28px); */
+}
+
+.play-page .char-name {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.75rem;
+  color: #545454;
+  text-transform: uppercase;
+  letter-spacing: 10px;
 }
 
 .play-page .input-form .input-container {
@@ -178,4 +186,19 @@
 
 .play-page .homepage-btn-container .btn-next-level:hover {
   background-color: var(--color-btn-bg-se-hover);
+}
+
+@media screen and (max-width: 410px) {
+  .play-page .image-sec {
+    width: 325px;
+    height: 325px;
+    margin: auto;
+  }
+
+  .play-page .image-sec img {
+    width: 325px;
+    height: auto;
+    overflow: hidden;
+    transition: all 0.2s ease-out;
+  }
 }
