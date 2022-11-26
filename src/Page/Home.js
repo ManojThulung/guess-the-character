@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLevel } from "../Component/ScoreContext";
 
 function Home() {
+  const { level, point } = useLevel();
+
   return (
     <div className="home-page">
       <div className="header">
         <div className="level">
-          Level: <span className="level-num">01</span>
+          Level: <span className="level-num">{level}</span>
         </div>
         <div className="score">
-          Score: <span className="score-num">00</span>
+          Points: <span className="score-num">{point}</span>
         </div>
       </div>
       <div className="hero-sec">

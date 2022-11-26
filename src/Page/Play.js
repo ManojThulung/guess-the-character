@@ -3,6 +3,8 @@ import { FiDelete } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import InputForm from "../Component/InputForm";
 
+import { useLevel, useNewLevel } from "../Component/ScoreContext";
+
 import Naruto from "../assets/images/naruto.jpg";
 import Goku from "../assets/images/goku.jpg";
 import Nezuko from "../assets/images/nezuko.jpg";
@@ -30,6 +32,9 @@ function Play() {
   const [levelState, setLevelState] = useState(0);
   const imageCoverRef = useRef();
   const imageRef = useRef();
+  const { level, point } = useLevel();
+  const newLevel = useNewLevel();
+  // let currentLevel = level;
 
   useEffect(() => {
     setLevelComplete((prevLevelComplete) => (prevLevelComplete = false));
@@ -52,6 +57,7 @@ function Play() {
   // function to move next level
   const nextLevelHandler = () => {
     setLevelState((prevLevelState) => prevLevelState + 1);
+    newLevel();
   };
 
   //to zoom out image
@@ -63,10 +69,10 @@ function Play() {
     <div className="play-page">
       <div className="header">
         <div className="level">
-          Level: <span className="level-num">01</span>
+          Level: <span className="level-num">{level}</span>
         </div>
         <div className="score">
-          Score: <span className="score-num">00</span>
+          Points: <span className="score-num">{point}</span>
         </div>
       </div>
       <div className="image-sec" ref={imageCoverRef}>
@@ -74,7 +80,7 @@ function Play() {
           src={LEVELS[levelState].image}
           ref={imageRef}
           alt="Character"
-          style={{ transform: levelComplete ? "scale(1)" : "scale(10)" }}
+          style={{ transform: levelComplete ? "scale(1)" : "scale(8)" }}
         />
       </div>
       {levelComplete && (
