@@ -8,22 +8,81 @@ import { useLevel, useNewLevel } from "../Component/ScoreContext";
 import Naruto from "../assets/images/naruto.jpg";
 import Goku from "../assets/images/goku.jpg";
 import Nezuko from "../assets/images/nezuko.jpg";
+import Luffy from "../assets/images/luffy.jpg";
+import Mikasa from "../assets/images/mikasa.jpg";
+import Saitama from "../assets/images/saitama.jpg";
+import Mob from "../assets/images/mob.jpg";
+import Itachi from "../assets/images/itachi.jpg";
+import Ichigo from "../assets/images/ichigo.jpg";
+import Gintoki from "../assets/images/gintoki.jpg";
+import Violet from "../assets/images/violet.jpg";
 
 const LEVELS = [
   {
+    level: 1,
     name: "naruto",
-    buttons: "ANLSROYUBTLP",
+    buttons: "ANROYUBTLP",
     image: Naruto,
   },
   {
+    level: 2,
     name: "goku",
-    buttons: "VGAOLSUK",
+    buttons: "VGOLSUK",
     image: Goku,
   },
   {
+    level: 3,
     name: "nezuko",
-    buttons: "PNTEEZAUOKER",
+    buttons: "PNTEEZUOK",
     image: Nezuko,
+  },
+  {
+    level: 4,
+    name: "luffy",
+    buttons: "LYONFFGU",
+    image: Luffy,
+  },
+  {
+    level: 5,
+    name: "mikasa",
+    buttons: "KACASATMI",
+    image: Mikasa,
+  },
+  {
+    level: 6,
+    name: "saitama",
+    buttons: "AHSIMARITMA",
+    image: Saitama,
+  },
+  {
+    level: 7,
+    name: "mob",
+    buttons: "BOBMAR",
+    image: Mob,
+  },
+  {
+    level: 8,
+    name: "itachi",
+    buttons: "ITJUCAIHAR",
+    image: Itachi,
+  },
+  {
+    level: 9,
+    name: "ichigo",
+    buttons: "MAINCVHYIOG",
+    image: Ichigo,
+  },
+  {
+    level: 10,
+    name: "gintoki",
+    buttons: "GIRROBKNTI",
+    image: Gintoki,
+  },
+  {
+    level: 11,
+    name: "violet",
+    buttons: "PVIOOLNAERT",
+    image: Violet,
   },
 ];
 
@@ -38,8 +97,10 @@ function Play() {
 
   useEffect(() => {
     setLevelComplete((prevLevelComplete) => (prevLevelComplete = false));
+    localStorage.setItem("level", JSON.stringify(level));
+    localStorage.setItem("point", JSON.stringify(point));
     // function to move next level
-  }, [levelState]);
+  }, [levelState, level, point]);
 
   // function to flash red color when a guess is wrong.
   const shakeImage = () => {
@@ -69,7 +130,7 @@ function Play() {
     <div className="play-page">
       <div className="header">
         <div className="level">
-          Level: <span className="level-num">{level}</span>
+          Level: <span className="level-num">{LEVELS[levelState].level}</span>
         </div>
         <div className="score">
           Points: <span className="score-num">{point}</span>
@@ -80,7 +141,7 @@ function Play() {
           src={LEVELS[levelState].image}
           ref={imageRef}
           alt="Character"
-          style={{ transform: levelComplete ? "scale(1)" : "scale(8)" }}
+          style={{ transform: levelComplete ? "scale(1)" : "scale(5)" }}
         />
       </div>
       {levelComplete && (
