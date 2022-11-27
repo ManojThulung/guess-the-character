@@ -1,30 +1,36 @@
 import { createContext, useContext, useState } from "react";
 
 const LevelContext = createContext();
-const NewLevelContext = createContext();
+const ChangeLevelContext = createContext();
 
 export function useLevel() {
   return useContext(LevelContext);
 }
 
-export function useNewLevel() {
-  return useContext(NewLevelContext);
+export function useChangeLevel() {
+  return useContext(ChangeLevelContext);
 }
 
 function LevelProvider({ children }) {
   const [level, setLevel] = useState(1);
   const [point, setPoint] = useState(0);
 
-  const newLevel = () => {
-    setLevel((prevLevel) => prevLevel + 1);
-    setPoint((prevPoint) => prevPoint + 2);
+  const newLevel = (currentLevel) => {
+    setLevel((prevLevel) => {
+      if (currentLevel >= prevLevel) {
+        setPoint((prevPoint) => prevPoint + 2);
+        return prevLevel + 1;
+      } else {
+        return prevLevel;
+      }
+    });
   };
 
   return (
     <LevelContext.Provider value={{ level, point }}>
-      <NewLevelContext.Provider value={newLevel}>
+      <ChangeLevelContext.Provider value={newLevel}>
         {children}
-      </NewLevelContext.Provider>
+      </ChangeLevelContext.Provider>
     </LevelContext.Provider>
   );
 }

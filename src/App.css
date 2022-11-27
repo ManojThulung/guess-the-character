@@ -78,7 +78,29 @@
   margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
+  align-items: center;
   justify-content: space-around;
+}
+
+.play-page .header .level {
+  display: flex;
+  align-items: center;
+}
+
+.play-page .header .btn-back-container {
+  font-size: 2rem;
+  display: flex;
+  margin-left: 10px;
+}
+
+.play-page .header .btn-back-container .btn-back-icon {
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  border-radius: 15px;
+}
+
+.play-page .header .btn-back-container .btn-back-icon:hover {
+  background: rgb(175, 175, 179);
 }
 
 .play-page .image-sec {

@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FiDelete } from "react-icons/fi";
+import { IoChevronBackCircleOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import InputForm from "../Component/InputForm";
 
-import { useLevel, useNewLevel } from "../Component/ScoreContext";
+import { useLevel, useChangeLevel } from "../Component/ScoreContext";
 
 import Naruto from "../assets/images/naruto.jpg";
 import Goku from "../assets/images/goku.jpg";
@@ -92,7 +93,7 @@ function Play() {
   const imageCoverRef = useRef();
   const imageRef = useRef();
   const { level, point } = useLevel();
-  const newLevel = useNewLevel();
+  const newLevel = useChangeLevel(); //to change level and points.
   // let currentLevel = level;
 
   useEffect(() => {
@@ -118,7 +119,15 @@ function Play() {
   // function to move next level
   const nextLevelHandler = () => {
     setLevelState((prevLevelState) => prevLevelState + 1);
-    newLevel();
+    console.log(LEVELS[levelState].level);
+    newLevel(LEVELS[levelState].level);
+  };
+
+  //to move level back
+  const handleBackLevel = () => {
+    if (levelState >= 1) {
+      setLevelState((prevLevelState) => prevLevelState - 1);
+    }
   };
 
   //to zoom out image
@@ -130,7 +139,13 @@ function Play() {
     <div className="play-page">
       <div className="header">
         <div className="level">
-          Level: <span className="level-num">{LEVELS[levelState].level}</span>
+          Level: <span className="level-num"> {LEVELS[levelState].level}</span>
+          <span className="btn-back-container">
+            <IoChevronBackCircleOutline
+              className="btn-back-icon"
+              onClick={handleBackLevel}
+            />
+          </span>
         </div>
         <div className="score">
           Points: <span className="score-num">{point}</span>
