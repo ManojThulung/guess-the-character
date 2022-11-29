@@ -4,7 +4,12 @@ import { IoChevronBackCircleOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import InputForm from "../Component/InputForm";
 
-import { useLevel, useChangeLevel } from "../Component/ScoreContext";
+import {
+  useLevel,
+  useChangeLevel,
+  useContinue,
+  useChangeContinue,
+} from "../Component/ScoreContext";
 
 import Naruto from "../assets/images/naruto.jpg";
 import Goku from "../assets/images/goku.jpg";
@@ -94,14 +99,20 @@ function Play() {
   const imageRef = useRef();
   const { level, point } = useLevel();
   const newLevel = useChangeLevel(); //to change level and points.
-  // let currentLevel = level;
+  const isContinue = useContinue();
+  const changeContinue = useChangeContinue();
 
   useEffect(() => {
     setLevelComplete((prevLevelComplete) => (prevLevelComplete = false));
     localStorage.setItem("level", JSON.stringify(level));
     localStorage.setItem("point", JSON.stringify(point));
-    // function to move next level
-  }, [levelState, level, point]);
+
+    if (isContinue) {
+      setLevelState((prevLevelState) => (prevLevelState = level - 1));
+    }
+  }, [levelState, level, point, isContinue]);
+
+  console.log(isContinue);
 
   // function to flash red color when a guess is wrong.
   const shakeImage = () => {
@@ -119,7 +130,6 @@ function Play() {
   // function to move next level
   const nextLevelHandler = () => {
     setLevelState((prevLevelState) => prevLevelState + 1);
-    console.log(LEVELS[levelState].level);
     newLevel(LEVELS[levelState].level);
   };
 
@@ -182,7 +192,9 @@ function Play() {
           )}
         </div>
         <Link to="/">
-          <button className="btn-home-page">Home Page</button>
+          <button onClick={changeContinue(false)} className="btn-home-page">
+            Home Page
+          </button>
         </Link>
       </div>
     </div>

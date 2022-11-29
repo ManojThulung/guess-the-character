@@ -2,6 +2,8 @@ import { createContext, useContext, useState } from "react";
 
 const LevelContext = createContext();
 const ChangeLevelContext = createContext();
+const ContinueContext = createContext();
+const ChangeContinueContext = createContext();
 
 export function useLevel() {
   return useContext(LevelContext);
@@ -11,9 +13,18 @@ export function useChangeLevel() {
   return useContext(ChangeLevelContext);
 }
 
-function LevelProvider({ children }) {
+export function useContinue() {
+  return useContext(ContinueContext);
+}
+
+export function useChangeContinue() {
+  return useContext(ChangeContinueContext);
+}
+
+function StateProvider({ children }) {
   const [level, setLevel] = useState(1);
-  const [point, setPoint] = useState(0);
+  const [point, setPoint] = useState(5);
+  const [isContinue, setIsContinue] = useState(false);
 
   const newLevel = (currentLevel) => {
     setLevel((prevLevel) => {
@@ -26,13 +37,21 @@ function LevelProvider({ children }) {
     });
   };
 
+  const changeContinue = (state) => {
+    setIsContinue((prevIsContinue) => (prevIsContinue = state));
+  };
+
   return (
     <LevelContext.Provider value={{ level, point }}>
       <ChangeLevelContext.Provider value={newLevel}>
-        {children}
+        <ContinueContext.Provider value={isContinue}>
+          <ChangeContinueContext.Provider value={changeContinue}>
+            {children}
+          </ChangeContinueContext.Provider>
+        </ContinueContext.Provider>
       </ChangeLevelContext.Provider>
     </LevelContext.Provider>
   );
 }
 
-export default LevelProvider;
+export default StateProvider;

@@ -58,6 +58,11 @@
   margin-top: 40px;
 }
 
+.home-page .btn-sec div {
+  margin: auto;
+  max-width: 240px;
+}
+
 .home-page .btn-sec .btn {
   font-size: 1.5rem;
   padding: 5px 50px;
@@ -66,11 +71,22 @@
   background-color: var(--color-btn-bg-pm);
   border: none;
   color: white;
+  width: 100%;
+  border: 2px solid black;
   transition: all 0.3s;
 }
 
 .home-page .btn-sec .btn:hover {
   background-color: var(--color-btn-bg-pm-hover);
+}
+
+.home-page .btn-sec .btn-continue {
+  background-color: var(--color-btn-bg-se);
+  margin-top: 30px;
+}
+
+.home-page .btn-sec .btn-continue:hover {
+  background-color: var(--color-btn-bg-se-hover);
 }
 
 .play-page .header {

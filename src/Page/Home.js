@@ -1,9 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useLevel } from "../Component/ScoreContext";
+import {
+  useLevel,
+  useContinue,
+  useChangeContinue,
+} from "../Component/ScoreContext";
 
 function Home() {
   const { level, point } = useLevel();
+  const isContinue = useContinue();
+  const changeContinue = useChangeContinue();
+
+  console.log(isContinue);
+
+  function handleContinue() {
+    changeContinue(true);
+  }
 
   return (
     <div className="home-page">
@@ -20,9 +32,22 @@ function Home() {
           <h2>Guess Character</h2>
         </div>
         <div className="btn-sec">
-          <Link to="/play">
-            <button className="btn btn-play">Play</button>
-          </Link>
+          <div>
+            <Link to="/play">
+              <button onClick={changeContinue(false)} className="btn btn-play">
+                New Game
+              </button>
+            </Link>
+          </div>
+          <div>
+            {level > 1 && (
+              <Link to="/play">
+                <button onClick={handleContinue} className="btn btn-continue">
+                  Continue
+                </button>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>
