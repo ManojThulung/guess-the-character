@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FiDelete } from "react-icons/fi";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
+import { HiOutlineLightBulb } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import InputForm from "../Component/InputForm";
 
@@ -97,6 +98,7 @@ function Play() {
   const [levelState, setLevelState] = useState(0);
   const imageCoverRef = useRef();
   const imageRef = useRef();
+  const handleHintRef = useRef(); //to call function from its child component
   const { level, point } = useLevel();
   const newLevel = useChangeLevel(); //to change level and points.
   const isContinue = useContinue();
@@ -112,8 +114,6 @@ function Play() {
     }
   }, [levelState, level, point, isContinue]);
 
-  console.log(isContinue);
-
   // function to flash red color when a guess is wrong.
   const shakeImage = () => {
     let imgPosition = ["30px", "-30px", "30px", "-30px", "30px", "0px"];
@@ -127,9 +127,15 @@ function Play() {
     });
   };
 
+  // function to give hint
+  // const handleHint = () => {
+  //   alert("hello world");
+  // };
+
   // function to move next level
   const nextLevelHandler = () => {
     setLevelState((prevLevelState) => prevLevelState + 1);
+    setLevelComplete((prevLevelComplete) => (prevLevelComplete = false));
     newLevel(LEVELS[levelState].level);
   };
 
@@ -158,6 +164,13 @@ function Play() {
           </span>
         </div>
         <div className="score">
+          <span
+            onClick={() => handleHintRef.current.handleHint()}
+            className="btn-hint-container"
+          >
+            <HiOutlineLightBulb className="btn-hint-icon" />
+            <span className="point-minus">-5</span>
+          </span>
           Points: <span className="score-num">{point}</span>
         </div>
       </div>
@@ -180,6 +193,7 @@ function Play() {
             deleteIcon={<FiDelete />}
             levels={LEVELS}
             levelState={levelState}
+            ref={handleHintRef}
           />
         )}
       </div>

@@ -1,16 +1,65 @@
-import React from "react";
-import { useRef } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 
-function InputForm({
-  getLevelStatus,
-  shakeImage,
-  deleteIcon,
-  levels,
-  levelState,
-}) {
+function InputForm(
+  { getLevelStatus, shakeImage, deleteIcon, levels, levelState },
+  ref
+) {
   const inputContainerRef = useRef();
   let counter = 0;
   let userInput = "";
+
+  //function to give hint
+  useImperativeHandle(ref, () => ({
+    handleHint() {
+      const correctName = levels[levelState].name.toUpperCase();
+      const inputList = inputContainerRef.current.children;
+
+      //check data with the answer.
+      if (userInput === "") {
+        userInput += correctName[counter];
+        inputList[counter].value = correctName[counter];
+        counter += 1;
+      } else {
+        const userInputAry = userInput.split("");
+        console.log(userInputAry);
+
+        emptyTextFields();
+        // counter = 0;
+        console.log("counter ", counter);
+
+        userInputAry.every((input) => {
+          console.log("inside loop counter ", counter);
+          if (input === correctName[counter]) {
+            console.log("correct name ", correctName[counter]);
+            console.log("match ", input);
+            inputList[counter].value = input;
+            counter += 1;
+            userInput += input;
+            return true;
+          } else {
+            console.log("unmatch", correctName[counter]);
+            inputList[counter].value = correctName[counter];
+            userInput += userInput[counter];
+            counter += 1;
+            return false;
+          }
+        });
+        // userInputAry.every((input) => {
+        //   if (input === userInput[counter]) {
+        //     inputList[counter].value = correctName[counter];
+        //     counter += 1;
+        //     userInput += input;
+        //     return true;
+        //   } else {
+        //     counter += 1;
+        //     inputList[counter].value = correctName[counter];
+        //     userInput += userInput[counter];
+        //     return false;
+        //   }
+        // });
+      }
+    },
+  }));
 
   const onClickHandler = (e) => {
     //to prevent from getting undifined value from outside of buttons
@@ -40,6 +89,19 @@ function InputForm({
     }
   };
 
+  const emptyTextFields = () => {
+    const inputList = inputContainerRef.current.children;
+    let i = 0;
+    while (i <= counter) {
+      inputList[i].value = "";
+      i += 1;
+      if (i === counter) {
+        counter = 0;
+        // userInput = "";
+      }
+    }
+  };
+
   const onDeleteHandler = () => {
     if (counter >= 1) {
       const inputList = inputContainerRef.current.children;
@@ -51,6 +113,7 @@ function InputForm({
 
   return (
     <>
+      <div onClick={emptyTextFields}>hey</div>
       <div className="input-container" ref={inputContainerRef}>
         {[...levels[levelState].name].map((input) => (
           <input type="text" disabled value="" />
@@ -70,4 +133,4 @@ function InputForm({
   );
 }
 
-export default InputForm;
+export default forwardRef(InputForm);

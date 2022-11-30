@@ -1,17 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  useLevel,
-  useContinue,
-  useChangeContinue,
-} from "../Component/ScoreContext";
+import { useLevel, useChangeContinue } from "../Component/ScoreContext";
 
 function Home() {
   const { level, point } = useLevel();
-  const isContinue = useContinue();
   const changeContinue = useChangeContinue();
-
-  console.log(isContinue);
 
   function handleContinue() {
     changeContinue(true);

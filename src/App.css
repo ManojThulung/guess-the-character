@@ -115,7 +115,38 @@
   border-radius: 15px;
 }
 
-.play-page .header .btn-back-container .btn-back-icon:hover {
+.play-page .header .score {
+  display: flex;
+  align-items: center;
+}
+
+.play-page .header .score .btn-hint-container {
+  margin-right: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.play-page .header .score .btn-hint-icon {
+  font-size: 2.1rem;
+  border-radius: 20px;
+  transition: 0.3s all;
+}
+
+.play-page .header .score .point-minus {
+  background-color: #cb5515;
+  color: white;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  height: 18px;
+  width: 18px;
+  text-align: center;
+  position: absolute;
+  left: 18px;
+  top: 19px;
+}
+
+.play-page .header .btn-back-container .btn-back-icon:hover,
+.play-page .header .score .btn-hint-icon:hover {
   background: rgb(175, 175, 179);
 }
 
@@ -129,6 +160,7 @@
   border-radius: 5px;
   background-color: red;
   transition: 0.2s ease-in;
+  font-weight: bold;
 }
 
 .play-page .image-sec img {
