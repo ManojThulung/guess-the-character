@@ -19,9 +19,7 @@ function InputForm(
 
       //check data with the answer.
       if (userInput === "") {
-        userInput += correctName[counter];
-        inputList[counter].value = correctName[counter];
-        counter += 1;
+        addUserInput(inputList, correctName[counter]);
       } else {
         const userInputAry = userInput.split("");
 
@@ -42,15 +40,9 @@ function InputForm(
           }
         });
 
-        if (isCorrect) {
-          userInput += correctName[counter];
-          inputList[counter].value = correctName[counter];
-          counter += 1;
-        }
+        if (isCorrect) addUserInput(inputList, correctName[counter]);
 
-        if (counter === inputListLength) {
-          checkName(correctName);
-        }
+        if (counter === inputListLength) checkName(correctName);
       }
     },
   }));
@@ -66,9 +58,7 @@ function InputForm(
       const inputListLength = inputList.length;
 
       if (counter < inputListLength) {
-        inputList[counter].value = value; //set letter value in the empty input.
-        userInput += value;
-        counter += 1;
+        addUserInput(inputList, value);
 
         if (counter === inputListLength) {
           checkName(correctName);
@@ -77,6 +67,13 @@ function InputForm(
         console.log("end");
       }
     }
+  };
+
+  //to add user input data in the textfield and in userInput varaible.
+  const addUserInput = (inputList, value) => {
+    inputList[counter].value = value; //set letter value in the empty input.
+    userInput += value;
+    counter += 1;
   };
 
   // check name correctness.
