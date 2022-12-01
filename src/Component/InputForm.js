@@ -13,6 +13,9 @@ function InputForm(
     handleHint() {
       const correctName = levels[levelState].name.toUpperCase();
       const inputList = inputContainerRef.current.children;
+      const inputListLength = inputList.length;
+
+      let isCorrect = true;
 
       //check data with the answer.
       if (userInput === "") {
@@ -21,42 +24,33 @@ function InputForm(
         counter += 1;
       } else {
         const userInputAry = userInput.split("");
-        console.log(userInputAry);
 
         emptyTextFields();
-        // counter = 0;
-        console.log("counter ", counter);
 
         userInputAry.every((input) => {
-          console.log("inside loop counter ", counter);
           if (input === correctName[counter]) {
-            console.log("correct name ", correctName[counter]);
-            console.log("match ", input);
             inputList[counter].value = input;
             counter += 1;
             userInput += input;
             return true;
           } else {
-            console.log("unmatch", correctName[counter]);
             inputList[counter].value = correctName[counter];
-            userInput += userInput[counter];
+            userInput += correctName[counter];
             counter += 1;
+            isCorrect = false;
             return false;
           }
         });
-        // userInputAry.every((input) => {
-        //   if (input === userInput[counter]) {
-        //     inputList[counter].value = correctName[counter];
-        //     counter += 1;
-        //     userInput += input;
-        //     return true;
-        //   } else {
-        //     counter += 1;
-        //     inputList[counter].value = correctName[counter];
-        //     userInput += userInput[counter];
-        //     return false;
-        //   }
-        // });
+
+        if (isCorrect) {
+          userInput += correctName[counter];
+          inputList[counter].value = correctName[counter];
+          counter += 1;
+        }
+
+        if (counter === inputListLength) {
+          checkName(correctName);
+        }
       }
     },
   }));
@@ -77,11 +71,7 @@ function InputForm(
         counter += 1;
 
         if (counter === inputListLength) {
-          if (userInput === correctName.toUpperCase()) {
-            getLevelStatus(true); //function called from parent component
-          } else {
-            shakeImage();
-          }
+          checkName(correctName);
         }
       } else {
         console.log("end");
@@ -89,6 +79,16 @@ function InputForm(
     }
   };
 
+  // check name correctness.
+  const checkName = (correctName) => {
+    if (userInput === correctName.toUpperCase()) {
+      getLevelStatus(true); //function called from parent component
+    } else {
+      shakeImage();
+    }
+  };
+
+  // to empty all the text fields.
   const emptyTextFields = () => {
     const inputList = inputContainerRef.current.children;
     let i = 0;
@@ -97,7 +97,7 @@ function InputForm(
       i += 1;
       if (i === counter) {
         counter = 0;
-        // userInput = "";
+        userInput = "";
       }
     }
   };
