@@ -5,13 +5,11 @@ import React, {
   useRef,
 } from "react";
 import { FiDelete } from "react-icons/fi";
-import { useChangeLevel } from "./ScoreContext";
 
 function InputForm({ nextLevelHandler, levels, levelState }, ref) {
   const inputContainerRef = useRef();
   const imageCoverRef = useRef();
   const [levelComplete, setLevelComplete] = useState(false);
-  const { newLevel, decreasePoint } = useChangeLevel(); //to change level and points.
 
   let counter = 0;
   let userInput = "";
@@ -21,8 +19,6 @@ function InputForm({ nextLevelHandler, levels, levelState }, ref) {
   useImperativeHandle(ref, () => ({
     //function to give hint
     handleHint() {
-      // decreasePoint();
-      console.log("Hint function called");
       const correctName = levels[levelState].name.toUpperCase();
       const inputList = inputContainerRef.current.children;
       const inputListLength = inputList.length;
@@ -58,6 +54,7 @@ function InputForm({ nextLevelHandler, levels, levelState }, ref) {
     },
   }));
 
+  // function to move next level
   const handleNextLevel = () => {
     nextLevelHandler();
     setLevelComplete((prevLevelComplete) => (prevLevelComplete = false));
@@ -185,4 +182,4 @@ function InputForm({ nextLevelHandler, levels, levelState }, ref) {
   );
 }
 
-export default forwardRef(InputForm);
+export default React.memo(forwardRef(InputForm));

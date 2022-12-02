@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 import { HiOutlineLightBulb } from "react-icons/hi";
 import { Link } from "react-router-dom";
@@ -33,15 +33,15 @@ function Play() {
   const onClickHint = () => {
     if (point >= 5) {
       handleHintRef.current.handleHint();
-      // decreasePoint();
+      decreasePoint();
     }
   };
 
   // function to move next level
-  const nextLevelHandler = () => {
-    setLevelState((prevLevelState) => prevLevelState + 1);
+  const nextLevelHandler = useCallback(() => {
     newLevel(LEVELS[levelState].level);
-  };
+    setLevelState((prevLevelState) => prevLevelState + 1);
+  }, []);
 
   //to move level back
   const handleBackLevel = () => {
@@ -65,7 +65,7 @@ function Play() {
         <div className="score">
           <span onClick={onClickHint} className="btn-hint-container">
             <HiOutlineLightBulb className="btn-hint-icon" />
-            <span className="point-minus">-5</span>
+            <span className="point-minus">{Math.trunc(point / 5)}</span>
           </span>
           Points: <span className="score-num">{point}</span>
         </div>

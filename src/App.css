@@ -133,10 +133,11 @@
 }
 
 .play-page .header .score .point-minus {
-  background-color: #cb5515;
+  background-color: #ad4107;
+  font-weight: 600;
   color: white;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   height: 18px;
   width: 18px;
   text-align: center;
