@@ -245,7 +245,7 @@
   color: black;
 }
 
-.play-page .homepage-btn-container .btn-next-level {
+.play-page .btn-next-level {
   background-color: var(--color-btn-bg-se);
 }
 
@@ -254,7 +254,7 @@
   background-color: rgb(196, 195, 195);
 }
 
-.play-page .homepage-btn-container .btn-next-level:hover {
+.play-page .btn-next-level:hover {
   background-color: var(--color-btn-bg-se-hover);
 }
 
