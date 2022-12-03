@@ -6,6 +6,8 @@ import React, {
 } from "react";
 import { FiDelete } from "react-icons/fi";
 
+// import { useChangeLevel } from "./ScoreContext";
+
 function InputForm({ nextLevelHandler, levels, levelState }, ref) {
   const inputContainerRef = useRef();
   const imageCoverRef = useRef();

@@ -26,15 +26,22 @@ function StateProvider({ children }) {
   const [point, setPoint] = useState(15);
   const [isContinue, setIsContinue] = useState(false);
 
+  // const newLevel = (currentLevel) => {
+  //   setLevel((prevLevel) => {
+  //     if (currentLevel >= prevLevel) {
+  //       setPoint((prevPoint) => prevPoint + 2);
+  //       return prevLevel + 1;
+  //     } else {
+  //       return prevLevel;
+  //     }
+  //   });
+  // };
+
   const newLevel = (currentLevel) => {
-    setLevel((prevLevel) => {
-      if (currentLevel >= prevLevel) {
-        setPoint((prevPoint) => prevPoint + 2);
-        return prevLevel + 1;
-      } else {
-        return prevLevel;
-      }
-    });
+    if (currentLevel >= level) {
+      setLevel((prevLevel) => prevLevel + 1);
+      setPoint((prevPoint) => prevPoint + 2);
+    }
   };
 
   const decreasePoint = () => {
