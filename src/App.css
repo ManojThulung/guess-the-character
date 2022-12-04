@@ -259,7 +259,13 @@
   background-color: var(--color-btn-bg-se-hover);
 }
 
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 450px) {
+  .play-page .header {
+    font-size: 1.3rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
   .play-page .image-sec {
     width: 325px;
     height: 325px;
@@ -271,5 +277,23 @@
     height: auto;
     overflow: hidden;
     transition: all 0.2s ease-out;
+  }
+
+  .play-page .input-form .btn-container button {
+    font-size: 1.3rem;
+    padding: 5px 13px;
+  }
+
+  .play-page .input-form .input-container input {
+    font-size: 1.5rem;
+    width: 25px;
+  }
+
+  .play-page .input-form .btn-container {
+    padding: 0px 15px;
+  }
+
+  .play-page .homepage-btn-container button {
+    font-size: 1.3rem;
   }
 }
