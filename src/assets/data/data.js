@@ -19,6 +19,14 @@ import Sasuke from "../images/sasuke.jpg";
 import Tanjiro from "../images/tanjiro.jpg";
 import Hinata from "../images/hinata.jpg";
 
+import Ussop from "../images/ussop.jpg";
+import Killua from "../images/killua.jpg";
+import Eren from "../images/eren.jpg";
+import Asta from "../images/asta.jpg";
+import Edward from "../images/edward.jpg";
+import Brook from "../images/brook.jpg";
+import Levi from "../images/levi.jpg";
+
 export const LEVELS = [
   {
     level: 1,
@@ -139,5 +147,47 @@ export const LEVELS = [
     name: "sasuke",
     buttons: "SAUWGSAKE",
     image: Sasuke,
+  },
+  {
+    level: 21,
+    name: "killua",
+    buttons: "KAUVIRLLG",
+    image: Killua,
+  },
+  {
+    level: 22,
+    name: "ussop",
+    buttons: "UPSLOVES",
+    image: Ussop,
+  },
+  {
+    level: 23,
+    name: "eren",
+    buttons: "MENRGIV",
+    image: Eren,
+  },
+  {
+    level: 24,
+    name: "asta",
+    buttons: "ATAPLOS",
+    image: Asta,
+  },
+  {
+    level: 25,
+    name: "edward",
+    buttons: "EDOWRARDG",
+    image: Edward,
+  },
+  {
+    level: 26,
+    name: "brook",
+    buttons: "COBOKRAD",
+    image: Brook,
+  },
+  {
+    level: 27,
+    name: "levi",
+    buttons: "GIMPVLE",
+    image: Levi,
   },
 ];
