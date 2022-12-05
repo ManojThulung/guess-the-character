@@ -259,6 +259,92 @@
   background-color: var(--color-btn-bg-se-hover);
 }
 
+.modal {
+  background-color: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgb(53, 53, 53);
+  border-radius: 10px;
+  width: 95%;
+  height: 95%;
+  padding: 0 20px;
+}
+
+.modal .header {
+  text-align: right;
+  display: block;
+  background-color: #ffffff;
+}
+
+.modal .header .cross-icon {
+  cursor: pointer;
+  color: #494141;
+  transition: all 0.3s;
+}
+
+.modal .header .cross-icon:hover {
+  border-radius: 100px;
+  transform: rotate(90deg);
+}
+
+.modal .hero-sec {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.modal .hero-sec .img-sec {
+  background-color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.modal .hero-sec .img-sec img {
+  background-color: #ffffff;
+  width: 300px;
+  height: auto;
+}
+
+.modal .hero-sec .main-text {
+  font-weight: 500;
+  font-size: 1.8rem;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.modal .hero-sec p {
+  font-size: 1.3rem;
+  max-width: 400px;
+  background-color: #ffffff;
+  margin-bottom: 40px;
+}
+
+.modal .hero-sec p span {
+  font-weight: 500;
+  background-color: #ffffff;
+}
+
+.modal .hero-sec .btn-home-page {
+  font-size: 1.5rem;
+  padding: 5px 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  cursor: pointer;
+  width: 250px;
+  margin: 10px 0px;
+  border: 2px solid black;
+  background-color: #ffffff;
+}
+
+.modal .hero-sec .btn-home-page:hover {
+  background-color: #e0dfdf;
+}
+
 @media screen and (max-width: 450px) {
   .play-page .header {
     font-size: 1.3rem;
@@ -295,5 +381,10 @@
 
   .play-page .homepage-btn-container button {
     font-size: 1.3rem;
+  }
+
+  .modal .hero-sec .img-sec img {
+    width: 250px;
+    height: auto;
   }
 }

@@ -3,6 +3,7 @@ import { IoChevronBackCircleOutline } from "react-icons/io5";
 import { HiOutlineLightBulb } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import InputForm from "../Component/InputForm";
+import LevelCompleteModel from "../Component/LevelCompleteModel";
 
 import {
   useLevel,
@@ -20,6 +21,7 @@ function Play() {
   const { newLevel, decreasePoint } = useChangeLevel(); //to change level and points.
   const isContinue = useContinue();
   const changeContinue = useChangeContinue();
+  const [isModal, setIsModal] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("level", JSON.stringify(level));
@@ -48,6 +50,11 @@ function Play() {
     if (levelState >= 1) {
       setLevelState((prevLevelState) => prevLevelState - 1);
     }
+  };
+
+  //to hide modal box
+  const handleModal = (state) => {
+    setIsModal((prevIsModal) => (prevIsModal = state));
   };
 
   return (
@@ -85,6 +92,11 @@ function Play() {
           </button>
         </Link>
       </div>
+      <LevelCompleteModel
+        isModal={isModal}
+        handleModal={handleModal}
+        changeContinue={changeContinue}
+      />
     </div>
   );
 }
