@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-
 import Trophy from "../assets/images/img/trophy.jpg";
 import { ImCross } from "react-icons/im";
 
-function LevelCompleteModel({ isModal, handleModal, changeContinue }) {
+function LevelCompleteModel({ isModal, handleModal }) {
   return (
     <div className="modal" style={{ display: isModal ? "block" : "none" }}>
       <div className="header">
@@ -19,12 +18,7 @@ function LevelCompleteModel({ isModal, handleModal, changeContinue }) {
           <span>Otaku Title</span>
         </p>
         <Link to="/">
-          <button
-            onClick={() => changeContinue(false)}
-            className="btn-home-page"
-          >
-            Home Page
-          </button>
+          <button className="btn-home-page">Home Page</button>
         </Link>
       </div>
     </div>

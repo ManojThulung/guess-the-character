@@ -4,18 +4,19 @@ import React, {
   useState,
   useRef,
 } from "react";
+import LevelCompleteModel from "./LevelCompleteModel";
 import { FiDelete } from "react-icons/fi";
-
-// import { useChangeLevel } from "./ScoreContext";
 
 function InputForm({ nextLevelHandler, levels, levelState }, ref) {
   const inputContainerRef = useRef();
   const imageCoverRef = useRef();
   const [levelComplete, setLevelComplete] = useState(false);
+  const [isModal, setIsModal] = useState(false);
+  const imageRef = useRef();
 
   let counter = 0;
   let userInput = "";
-  const imageRef = useRef();
+  let finalLevel = 26;
 
   //to the function to its parent
   useImperativeHandle(ref, () => ({
@@ -74,11 +75,6 @@ function InputForm({ nextLevelHandler, levels, levelState }, ref) {
     });
   };
 
-  //to zoom out image
-  const getLevelStatus = (isLevel) => {
-    setLevelComplete((prevLevelComplete) => (prevLevelComplete = isLevel));
-  };
-
   const onClickHandler = (e) => {
     //to prevent from getting undifined value from outside of buttons
     if (e.target.value) {
@@ -110,11 +106,21 @@ function InputForm({ nextLevelHandler, levels, levelState }, ref) {
 
   // check name correctness.
   const checkName = (correctName) => {
-    if (userInput === correctName.toUpperCase()) {
+    if (userInput === correctName.toUpperCase() && levelState === finalLevel) {
+      getLevelStatus(true);
+      setTimeout(() => {
+        setIsModal((prevIsModal) => (prevIsModal = true));
+      }, 800);
+    } else if (userInput === correctName.toUpperCase()) {
       getLevelStatus(true); //function called from parent component
     } else {
       shakeImage();
     }
+  };
+
+  //to zoom out image
+  const getLevelStatus = (isLevel) => {
+    setLevelComplete((prevLevelComplete) => (prevLevelComplete = isLevel));
   };
 
   // to empty all the text fields.
@@ -139,6 +145,11 @@ function InputForm({ nextLevelHandler, levels, levelState }, ref) {
       userInput = userInput.slice(0, -1);
       counter -= 1;
     }
+  };
+
+  //to hide modal box
+  const handleModal = (state) => {
+    setIsModal((prevIsModal) => (prevIsModal = state));
   };
 
   return (
@@ -173,13 +184,14 @@ function InputForm({ nextLevelHandler, levels, levelState }, ref) {
           </div>{" "}
         </>
       )}
-      {levelComplete && (
+      {levelComplete && levelState !== finalLevel && (
         <div className="homepage-btn-container">
           <button className="btn-next-level" onClick={handleNextLevel}>
             Next Level
           </button>
         </div>
       )}
+      <LevelCompleteModel isModal={isModal} handleModal={handleModal} />
     </>
   );
 }
