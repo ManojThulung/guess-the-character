@@ -27,6 +27,13 @@ import Edward from "../images/edward.jpg";
 import Brook from "../images/brook.jpg";
 import Levi from "../images/levi.jpg";
 
+import Gojo from "../images/gojo.jpg";
+import Vegeta from "../images/vegeta.jpg";
+import Madara from "../images/madara.jpg";
+import Gon from "../images/gon.jpg";
+import Hinatasho from "../images/hinatasho1.jpg";
+import Obito from "../images/obito.jpg";
+
 export const LEVELS = [
   {
     level: 1,
@@ -157,19 +164,19 @@ export const LEVELS = [
   {
     level: 22,
     name: "ussop",
-    buttons: "UPSLOVES",
+    buttons: "UPSTLOVES",
     image: Ussop,
   },
   {
     level: 23,
     name: "eren",
-    buttons: "MENRGIV",
+    buttons: "MENRKGIV",
     image: Eren,
   },
   {
     level: 24,
     name: "asta",
-    buttons: "ATAPLOS",
+    buttons: "ATAPLNOS",
     image: Asta,
   },
   {
@@ -189,5 +196,41 @@ export const LEVELS = [
     name: "levi",
     buttons: "GIMPVLE",
     image: Levi,
+  },
+  {
+    level: 28,
+    name: "vegeta",
+    buttons: "VGATEEPRA",
+    image: Vegeta,
+  },
+  {
+    level: 29,
+    name: "gojo",
+    buttons: "JOSOGIRA",
+    image: Gojo,
+  },
+  {
+    level: 30,
+    name: "madara",
+    buttons: "MASADAHTRA",
+    image: Madara,
+  },
+  {
+    level: 31,
+    name: "Hinata",
+    buttons: "GHANTARIOS",
+    image: Hinatasho,
+  },
+  {
+    level: 32,
+    name: "gon",
+    buttons: "ROGUNA",
+    image: Gon,
+  },
+  {
+    level: 33,
+    name: "obito",
+    buttons: "OTOASBIR",
+    image: Obito,
   },
 ];

@@ -16,7 +16,7 @@ function InputForm({ nextLevelHandler, levels, levelState }, ref) {
 
   let counter = 0;
   let userInput = "";
-  let finalLevel = 26;
+  let finalLevel = 32;
 
   //to the function to its parent
   useImperativeHandle(ref, () => ({
